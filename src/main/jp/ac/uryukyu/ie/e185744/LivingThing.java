@@ -2,21 +2,33 @@ package jp.ac.uryukyu.ie.e185744;
 
 public class LivingThing {
 
-    String name;
-    int hitPoint;
-    int attack;
-    boolean dead;
+    private String name;
+    private int hitPoint;
+    private int attack;
+    private boolean dead;
 
-    public LivingThing (String name, int maximumHP, int attack) {
+    LivingThing (String name, int maximumHP, int attack) {
         this.name = name;
-        hitPoint = maximumHP;
+        this.hitPoint = maximumHP;
         this.attack = attack;
-        dead = false;
+        this.dead = false;
         System.out.printf("%sのHPは%d。攻撃力は%dです。\n", this.name, this.hitPoint, this.attack);
+    }
+
+    public int getHitPoint() {
+        return hitPoint;
+    }
+
+    public void setHitPoint(int hitPoint) {
+        this.hitPoint = hitPoint;
     }
 
     public boolean isDead() {
         return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
     }
 
     public String getName(){
