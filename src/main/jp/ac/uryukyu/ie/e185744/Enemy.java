@@ -7,7 +7,7 @@ public class Enemy extends LivingThing{
      * @param maximumHP モンスターのHP
      * @param attack モンスターの攻撃力
      */
-    public Enemy (String name, int maximumHP, int attack) {
+    Enemy (String name, int maximumHP, int attack) {
         super(name,maximumHP,attack);
     }
 
