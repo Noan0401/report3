@@ -4,8 +4,9 @@ package jp.ac.uryukyu.ie.e185744;
 /*現在攻撃力が回復力*/
 
 public class Monk extends LivingThing{
-    Monk(String name, int maximumHP, int attack) {
-        super(name,maximumHP,attack);
+
+    Monk(String name, int maximumHP, int attack, int defence, int maximumMP) {
+        super(name,maximumHP,attack,defence,maximumMP);
     }
 
     public void wounded(int damage){

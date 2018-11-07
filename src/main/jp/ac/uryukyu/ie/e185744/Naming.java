@@ -11,8 +11,8 @@ public class Naming {
     }
 
     void setName(int num) {
-        String charactername = user_input(num);
-        this.name = charactername;
+        String character_name = user_input(num);
+        this.name = character_name;
     }
 
     private String user_input(int number){
