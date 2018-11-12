@@ -143,9 +143,11 @@ public class LivingThing {
             case 3:
                 int select_2 = user_input(1);
                 if(magicPoint > 1){
+
                     if(select_2 == 1){
-                        skill.magic(opponent.name,2);
+                        opponent.wounded(skill.magic(opponent.name,2));
                         this.magicPoint = skill.getMagick_point();
+
                     }else{
                         heal(opponent);
                     }
