@@ -10,15 +10,15 @@ public class Main {
 
 
         //敵
-        Enemy enemy = new Enemy("キングスライム", 15, 12,6,0);
+        Enemy enemy = new Enemy("キングスライム", 15, 10,6,0);
 
 
-        System.out.printf("%s vs. %s\n", hero.getName(), enemy.getName());
+        System.out.printf("\n%s vs. %s\n\n", hero.getName(), enemy.getName());
 
         int turn = 0;
         while( !hero.isDead() && !enemy.isDead() ){
             turn++;
-            System.out.printf("%dターン目開始！\n", turn);
+            System.out.printf("%dターン目開始！\n\n", turn);
             hero.selection(enemy);
             enemy.attack(hero);
             hero.reset_defence();

@@ -58,7 +58,7 @@ public class LivingThing {
     public void attack(LivingThing opponent){
         if(!isDead()) {
             int p = opponent.defence / 2;
-            int damage = (int) (Math.random() * attack) - p;
+            int damage = (int) (Math.random() * attack) - p + (attack/3) ;
             this.damage = damage;
 
             if(damage < 0){
@@ -82,9 +82,7 @@ public class LivingThing {
     //回復メソッド
     public void heal(LivingThing opponent){
 
-
-
-        int heal = (int) (Math.random() * 3);
+        int heal = (int) (Math.random() * 5);
         this.magicPoint = this.magicPoint - 3;
 
         int damage = maxHP - hitPoint;
@@ -102,7 +100,7 @@ public class LivingThing {
         }
     }
 
-
+    //防御メソッド
     void protecthion(LivingThing opponemt){
         this.defence = this.defence * 2;
         System.out.printf("%sは防御している！\n",this.name);
@@ -112,22 +110,25 @@ public class LivingThing {
         this.defence = this.defence_1;
     }
 
-    private int user_input(){
+    private int user_input(int number){
 
         int input;
         Scanner in = new Scanner(System.in);
 
-        System.out.println(this.hitPoint);
-        System.out.println("1.攻撃　2.防御　3.回復");
+        if(number == 1){
+            System.out.println("1.攻撃魔法　2.回復魔法");
+        }else{
+            System.out.printf("\t%s\n\tHP:%d\n\tMP:%d\n\n",this.name,this.hitPoint,this.magicPoint);
+            System.out.println("1.攻撃　2.防御　3.呪文");
+        }
 
         input = in.nextInt();
         return input;
     }
 
     public void selection(LivingThing opponent){
-        int select = user_input();
-
-
+        int select = user_input(0);
+        Skill skill = new Skill(magicPoint,name);
 
         switch (select){
 
@@ -140,7 +141,19 @@ public class LivingThing {
                 System.out.println(this.defence);
                 break;
             case 3:
-                heal(opponent);
+                int select_2 = user_input(1);
+                if(magicPoint > 1){
+                    if(select_2 == 1){
+                        skill.magic(opponent.name,2);
+                        this.magicPoint = skill.getMagick_point();
+                    }else{
+                        heal(opponent);
+                    }
+
+                }else {
+                    System.out.println("MPが足りない！！");
+                }
+
                 break;
 
             default:
