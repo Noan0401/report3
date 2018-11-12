@@ -14,7 +14,6 @@ public class Enemy extends LivingThing{
 
     public void wounded(int damage){
         int hitpoint_e = super.getHitPoint();
-
         hitpoint_e -= damage;
         setHitPoint(hitpoint_e);
         if( hitpoint_e < 1 ) {

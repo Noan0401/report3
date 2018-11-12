@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class LivingThing {
 
+    //変数定義
     private String name;
     private int hitPoint; //HP
     private int maxHP;
@@ -53,12 +54,14 @@ public class LivingThing {
         return name;
     }
 
-
-    //攻撃メソッド
+    /*-------------------------------------------------------*/
+    //攻撃メソッド                                            //
+    //ダメージは　0~攻撃力ランダム＋　(攻撃力/3) ー　(防御力/2)    //
+    /*------------------------------------------------------*/
     public void attack(LivingThing opponent){
         if(!isDead()) {
-            int p = opponent.defence / 2;
-            int damage = (int) (Math.random() * attack) - p + (attack/3) ;
+            int protect = opponent.defence / 2;
+            int damage = (int) (Math.random() * attack) - protect + (attack/3) ;
             this.damage = damage;
 
             if(damage < 0){
@@ -70,7 +73,9 @@ public class LivingThing {
         }
     }
 
-    //死亡判定
+    /*-------------------------------------------------------*/
+    //死亡判定                                                //
+    /*-------------------------------------------------------*/
     public void wounded(int damage){
         this.hitPoint -= damage;
         if( LivingThing.this.hitPoint < 1 ) {
@@ -79,10 +84,14 @@ public class LivingThing {
         }
     }
 
+
+    /*-------------------------------------------------------*/
     //回復メソッド
+    // MP3消費。1~6の回復量
+    /*-------------------------------------------------------*/
     public void heal(LivingThing opponent){
 
-        int heal = (int) (Math.random() * 5);
+        int heal = (int) (Math.random() * 5) +1;
         this.magicPoint = this.magicPoint - 3;
 
         int damage = maxHP - hitPoint;
@@ -100,16 +109,25 @@ public class LivingThing {
         }
     }
 
+
+    /*-------------------------------------------------------*/
     //防御メソッド
+    //防御時、防御力2倍。
+    /*-------------------------------------------------------*/
     void protecthion(LivingThing opponemt){
         this.defence = this.defence * 2;
         System.out.printf("%sは防御している！\n",this.name);
     }
 
+    //２倍した防御力を戻す。
     void reset_defence(){
         this.defence = this.defence_1;
     }
 
+    /*-------------------------------------------------------*/
+    //行動選択
+    // "1.攻撃　2.防御　3.呪文"選べる。
+    /*-------------------------------------------------------*/
     private int user_input(int number){
 
         int input;
@@ -126,23 +144,27 @@ public class LivingThing {
         return input;
     }
 
+    /*-------------------------------------------------------*/
+    //行動分岐実行。                                           //
+    /*-------------------------------------------------------*/
     public void selection(LivingThing opponent){
         int select = user_input(0);
         Skill skill = new Skill(magicPoint,name);
 
         switch (select){
 
-            case 1:
+            case 1: //攻撃
                 attack(opponent);
                 break;
 
-            case 2:
+            case 2: //防御
                 protecthion(opponent);
                 System.out.println(this.defence);
                 break;
-            case 3:
+            case 3: //呪文
                 int select_2 = user_input(1);
-                if(magicPoint > 1){
+
+                if(magicPoint > 1){ //MP歩かないかの分岐
 
                     if(select_2 == 1){
                         opponent.wounded(skill.magic(opponent.name,2));

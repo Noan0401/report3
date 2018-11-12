@@ -1,7 +1,9 @@
 package jp.ac.uryukyu.ie.e185744;
 import java.util.Scanner;
 
-
+/*********************/
+/*勇者の名前設定クラス */
+/********************/
 public class Naming {
 
     private String name;
